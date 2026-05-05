@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="UVIN777 - Premium Cricket Betting & Live Casino Platform">
+    <meta name="theme-color" content="#D4AF37">
+    <title>UVIN777 | Live Cricket Betting & Casino</title>
+    
+    <!-- Google Fonts for Luxury Feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- UVIN777 Custom Theme -->
+    <link rel="stylesheet" href="../css/uvin777-theme.css">
+</head>
+<body class="dark-mode">
+    
+    <!-- ==================== TOP NAVIGATION BAR ==================== -->
+    <nav class="uvin-navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="../assets/logo.png" alt="UVIN777" class="brand-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="brand-text-fallback" style="display:none;">
+                    <span class="brand-uvin">UVIN</span><span class="brand-777">777</span>
+                </div>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="#" class="nav-link active" data-page="sportsbook">
+                    <i class="fas fa-cricket-bat-ball"></i> Sportsbook
+                </a>
+                <a href="#" class="nav-link" data-page="live">
+                    <i class="fas fa-circle-dot live-pulse"></i> Live Now
+                </a>
+                <a href="#" class="nav-link" data-page="casino">
+                    <i class="fas fa-dice"></i> Casino
+                </a>
+                <a href="#" class="nav-link" data-page="results">
+                    <i class="fas fa-trophy"></i> Results
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <div class="wallet-badge">
+                    <i class="fas fa-coins coin-icon"></i>
+                    <span class="wallet-balance" id="headerBalance">₹10,000.00</span>
+                </div>
+                <div class="user-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <button class="hamburger" id="hamburgerBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== MAIN CONTENT AREA ==================== -->
+    <main class="main-content">
+        <div class="container-fluid">
+            
+            <!-- ==================== SECTION 1: SCORE CARD WIDGET ==================== -->
+            <section class="widget-section score-section">
+                <div class="section-header">
+                    <div class="header-left">
+                        <i class="fas fa-scoreboard section-icon"></i>
+                        <h2 class="section-title">Live Scorecard</h2>
+                        <span class="live-badge">LIVE</span>
+                    </div>
+                    <div class="header-right">
+                        <button class="refresh-btn" onclick="refreshWidget('score-widget')">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                <div class="widget-container glass-card">
+                    <!-- Fixtures / Live / Results Card Widget -->
+                    <div id="score-widget" class="widget-loader">
+                        <div class="loading-spinner">
+                            <div class="spinner-gold"></div>
+                            <p>Loading Live Scores...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== SECTION 2: VERTICAL MATCH LIST ==================== -->
+            <section class="widget-section matchlist-section">
+                <div class="section-header">
+                    <div class="header-left">
+                        <i class="fas fa-list-ul section-icon"></i>
+                        <h2 class="section-title">Upcoming & Live Matches</h2>
+                        <span class="match-count" id="matchCount">0 Matches</span>
+                    </div>
+                    <div class="header-right">
+                        <div class="filter-tabs">
+                            <button class="filter-tab active" data-filter="all">All</button>
+                            <button class="filter-tab" data-filter="live">Live</button>
+                            <button class="filter-tab" data-filter="upcoming">Upcoming</button>
+                            <button class="filter-tab" data-filter="completed">Completed</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-container glass-card">
+                    <!-- Vertical Match List Widget -->
+                    <div id="vmatchlist-widget" class="widget-loader">
+                        <div class="loading-spinner">
+                            <div class="spinner-gold"></div>
+                            <p>Loading Match List...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== SECTION 3: HORIZONTAL MATCH LIST ==================== -->
+            <section class="widget-section horizontallist-section">
+                <div class="section-header">
+                    <div class="header-left">
+                        <i class="fas fa-sliders-h section-icon"></i>
+                        <h2 class="section-title">Quick Match View</h2>
+                    </div>
+                    <div class="header-right">
+                        <button class="nav-arrow" id="scrollLeft">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="nav-arrow" id="scrollRight">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="widget-container glass-card horizontal-scroll-container">
+                    <!-- Horizontal Match List Widget -->
+                    <div id="matchlist-widget" class="widget-loader horizontal-loader">
+                        <div class="loading-spinner">
+                            <div class="spinner-gold"></div>
+                            <p>Loading Quick Matches...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== SECTION 4: QUICK BET SLIP ==================== -->
+            <aside class="bet-slip-sidebar" id="betSlip">
+                <div class="bet-slip-header">
+                    <i class="fas fa-receipt"></i>
+                    <h3>Bet Slip</h3>
+                    <span class="bet-count" id="betCount">0</span>
+                </div>
+                <div class="bet-slip-body" id="betSlipBody">
+                    <div class="empty-slip">
+                        <i class="fas fa-clipboard-list empty-icon"></i>
+                        <p>Click on odds to add selections</p>
+                    </div>
+                </div>
+                <div class="bet-slip-footer" style="display:none;" id="betSlipFooter">
+                    <div class="stake-input-group">
+                        <label>Stake Amount</label>
+                        <div class="input-with-currency">
+                            <span class="currency">₹</span>
+                            <input type="number" id="stakeAmount" placeholder="0.00" min="100">
+                        </div>
+                    </div>
+                    <div class="potential-win">
+                        <span>Potential Win:</span>
+                        <span class="win-amount" id="potentialWin">₹0.00</span>
+                    </div>
+                    <button class="place-bet-btn" onclick="placeBet()">
+                        <i class="fas fa-check-circle"></i> Place Bet
+                    </button>
+                </div>
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="uvin-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="brand-uvin">UVIN</span><span class="brand-777">777</span>
+                <p>Premium Betting Experience</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Terms</a>
+                <a href="#">Privacy</a>
+                <a href="#">Responsible Gaming</a>
+                <a href="#">Support 24/7</a>
+            </div>
+            <div class="footer-payment">
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-bitcoin"></i>
+                <i class="fas fa-wallet"></i>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 UVIN777. 18+ Only. Gamble Responsibly.</p>
+        </div>
+    </footer>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <!-- jQuery (required for some widgets) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <!-- UVIN777 Custom App Logic -->
+    <script src="../js/uvin777-app.js"></script>
+
+</body>
+</html>
+/* ============================================
+   UVIN777 - GOLDEN LUXURY PREMIUM THEME v2.0
+   ============================================ */
+
+:root {
+    /* Primary Gold Palette */
+    --gold-primary: #D4AF37;
+    --gold-light: #F0D78C;
+    --gold-dark: #B4941E;
+    --gold-gradient: linear-gradient(135deg, #BF953F, #FCF6B5, #B38728, #FBF5B7);
+    --gold-gradient-vertical: linear-gradient(180deg, #D4AF37, #FFDF73, #B8860B);
+    
+    /* Background Colors */
+    --bg-primary: #0A0A0A;
+    --bg-secondary: #111111;
+    --bg-card: #1A1A1A;
+    --bg-card-hover: #222222;
+    --bg-input: #252525;
+    
+    /* Text Colors */
+    --text-primary: #FFFFFF;
+    --text-secondary: #B0B0B0;
+    --text-gold: #D4AF37;
+    --text-muted: #707070;
+    
+    /* Border & Shadow */
+    --border-color: #2A2A2A;
+    --border-gold: rgba(212, 175, 55, 0.3);
+    --shadow-gold: 0 4px 25px rgba(212, 175, 55, 0.15);
+    --shadow-gold-hover: 0 8px 40px rgba(212, 175, 55, 0.3);
+    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.5);
+    
+    /* Status Colors */
+    --live-red: #FF1744;
+    --win-green: #00E676;
+    --loss-red: #FF5252;
+    --pending-yellow: #FFD740;
+    
+    /* Typography */
+    --font-primary: 'Montserrat', sans-serif;
+    --font-display: 'Playfair Display', serif;
+    
+    /* Spacing */
+    --section-gap: 2rem;
+    --card-padding: 1.5rem;
+    --border-radius: 16px;
+    --border-radius-sm: 10px;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==================== RESET & BASE ==================== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+body.dark-mode {
+    background: var(--bg-primary);
+}
+
+/* ==================== NAVIGATION BAR ==================== */
+.uvin-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-gold);
+    padding: 0 2rem;
+}
+
+.uvin-navbar .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.brand-logo {
+    height: 40px;
+    width: auto;
+}
+
+.brand-text-fallback {
+    display: flex;
+    align-items: baseline;
+    font-family: var(--font-display);
+}
+
+.brand-uvin {
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.brand-777 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--gold-primary);
+    margin-left: 2px;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.2rem;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: var(--border-radius-sm);
+    transition: var(--transition-smooth);
+    border: 1px solid transparent;
+}
+
+.nav-link:hover {
+    color: var(--gold-primary);
+    background: rgba(212, 175, 55, 0.05);
+}
+
+.nav-link.active {
+    color: var(--gold-primary);
+    background: rgba(212, 175, 55, 0.1);
+    border-color: var(--border-gold);
+}
+
+.live-pulse {
+    animation: livePulse 1.5s ease-in-out infinite;
+    color: var(--live-red);
+}
+
+@keyframes livePulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.wallet-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(212, 175, 55, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    border: 1px solid var(--border-gold);
+}
+
+.coin-icon {
+    color: var(--gold-primary);
+    font-size: 1rem;
+}
+
+.wallet-balance {
+    font-weight: 700;
+    color: var(--gold-primary);
+    font-size: 0.9rem;
+}
+
+.user-avatar {
+    font-size: 1.8rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.user-avatar:hover {
+    color: var(--gold-primary);
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* ==================== MAIN CONTENT ==================== */
+.main-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 2rem;
+}
+
+.container-fluid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--section-gap);
+}
+
+/* ==================== SECTION STYLING ==================== */
+.widget-section {
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 0 0.5rem;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.section-icon {
+    color: var(--gold-primary);
+    font-size: 1.3rem;
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 0.5px;
+}
+
+.live-badge {
+    background: var(--live-red);
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    animation: livePulse 1.5s ease-in-out infinite;
+}
+
+.match-count {
+    background: rgba(212, 175, 55, 0.15);
+    color: var(--gold-primary);
+    padding: 0.2rem 0.7rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.filter-tabs {
+    display: flex;
+    gap: 0.3rem;
+    background: var(--bg-card);
+    padding: 0.3rem;
+    border-radius: var(--border-radius-sm);
+}
+
+.filter-tab {
+    padding: 0.4rem 1rem;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: var(--transition-fast);
+}
+
+.filter-tab:hover {
+    color: var(--gold-primary);
+}
+
+.filter-tab.active {
+    background: var(--gold-gradient);
+    color: #000000;
+    font-weight: 700;
+}
+
+.refresh-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: var(--transition-fast);
+}
+
+.refresh-btn:hover {
+    border-color: var(--gold-primary);
+    color: var(--gold-primary);
+}
+
+.nav-arrow {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+}
+
+.nav-arrow:hover {
+    background: var(--gold-primary);
+    color: #000;
+    border-color: var(--gold-primary);
+}
+
+/* ==================== GLASS CARD WIDGET CONTAINER ==================== */
+.glass-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--card-padding);
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gold-gradient);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.glass-card:hover::before {
+    opacity: 1;
+}
+
+.glass-card:hover {
+    border-color: var(--border-gold);
+    box-shadow: var(--shadow-gold);
+}
+
+.horizontal-scroll-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+    padding: 0.5rem 0;
+}
+
+.horizontal-scroll-container::-webkit-scrollbar {
+    height: 4px;
+}
+
+.horizontal-scroll-container::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 2px;
+}
+
+.horizontal-scroll-container::-webkit-scrollbar-thumb {
+    background: var(--gold-primary);
+    border-radius: 2px;
+}
+
+/* ==================== WIDGET LOADER ==================== */
+.widget-loader {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.horizontal-loader {
+    min-height: 150px;
+    min-width: 100%;
+}
+
+.loading-spinner {
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.spinner-gold {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 1rem;
+    border: 3px solid var(--border-color);
+    border-top-color: var(--gold-primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ==================== WIDGET CONTENT OVERRIDES ==================== */
+/* These styles will style the 3rd-party widget content */
+
+#score-widget iframe,
+#vmatchlist-widget iframe,
+#matchlist-widget iframe {
+    width: 100% !important;
+    border: none !important;
+    border-radius: var(--border-radius-sm) !important;
+}
+
+#score-widget > div,
+#vmatchlist-widget > div,
+#matchlist-widget > div {
+    width: 100% !important;
+}
+
+/* Style the widget elements when they load */
+#score-widget .match-card,
+#vmatchlist-widget .match-item,
+#matchlist-widget .match-card-horizontal {
+    background: var(--bg-card-hover) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: var(--border-radius-sm) !important;
+    padding: 1rem !important;
+    margin-bottom: 0.5rem !important;
+    transition: var(--transition-smooth) !important;
+}
+
+#matchlist-widget .match-card-horizontal {
+    display: inline-block !important;
+    min-width: 280px !important;
+    margin-right: 1rem !important;
+}
+
+/* ==================== BET SLIP SIDEBAR ==================== */
+.bet-slip-sidebar {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    height: fit-content;
+    position: sticky;
+    top: 90px;
+    overflow: hidden;
+}
+
+.bet-slip-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.bet-slip-header h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    flex: 1;
+}
+
+.bet-count {
+    background: var(--gold-primary);
+    color: #000;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.bet-slip-body {
+    padding: 1.5rem;
+    min-height: 300px;
+}
+
+.empty-slip {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-muted);
+}
+
+.empty-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.3;
+}
+
+.bet-slip-footer {
+    padding: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.stake-input-group label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.input-with-currency {
+    display: flex;
+    align-items: center;
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+}
+
+.currency {
+    padding: 0.6rem 0.8rem;
+    background: var(--bg-secondary);
+    color: var(--gold-primary);
+    font-weight: 700;
+    border-right: 1px solid var(--border-color);
+}
+
+.input-with-currency input {
+    flex: 1;
+    padding: 0.6rem;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    outline: none;
+}
+
+.potential-win {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+    font-size: 0.85rem;
+}
+
+.win-amount {
+    color: var(--win-green);
+    font-weight: 700;
+}
+
+.place-bet-btn {
+    width: 100%;
+    padding: 0.8rem;
+    background: var(--gold-gradient);
+    color: #000;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: var(--transition-smooth);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.place-bet-btn:hover {
+    box-shadow: var(--shadow-gold-hover);
+    transform: translateY(-2px);
+}
+
+.place-bet-btn:active {
+    transform: scale(0.98);
+}
+
+/* ==================== FOOTER ==================== */
+.uvin-footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-gold);
+    margin-top: 3rem;
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-brand p {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: var(--transition-fast);
+}
+
+.footer-links a:hover {
+    color: var(--gold-primary);
+}
+
+.footer-payment {
+    display: flex;
+    gap: 1rem;
+    font-size: 1.5rem;
+    color: var(--text-muted);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 1rem;
+    background: var(--bg-primary);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 1200px) {
+    .main-content {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+    
+    .bet-slip-sidebar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+        max-height: 60vh;
+        overflow-y: auto;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .bet-slip-sidebar.open {
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: var(--bg-secondary);
+        flex-direction: column;
+        padding: 1rem;
+        border-bottom: 1px solid var(--border-gold);
+    }
+    
+    .nav-menu.open {
+        display: flex;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+    
+    .filter-tabs {
+        width: 100%;
+        overflow-x: auto;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-actions .wallet-badge {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.75rem;
+    }
+    
+    .section-title {
+        font-size: 1.1rem;
+    }
+
+    
+    .glass-card {
+        padding: 1rem;
+    }
+}
+/**
+ * UVIN777 - Premium Betting Platform
+ * Widget Loader & Integration Engine
+ * Version: 2.0.0
+ */
+
+(function() {
+    'use strict';
+
+    // ==================== CONFIGURATION ====================
+    const CONFIG = {
+        // Widget CDN URLs
+        widgets: {
+            score: 'https://cdorgapi.b-cdn.net/widgets/score.js',           // Fixtures / Live / Results Card
+            vmatchlist: 'https://cdorgapi.b-cdn.net/widgets/vmatchlist.js', // Vertical Match List
+            matchlist: 'https://cdorgapi.b-cdn.net/widgets/matchlist.js'     // Horizontal Match List
+        },
+        
+        // Target container IDs
+        containers: {
+            score: 'score-widget',
+            vmatchlist: 'vmatchlist-widget',
+            matchlist: 'matchlist-widget'
+        },
+        
+        // Refresh interval (milliseconds)
+        refreshInterval: 30000, // 30 seconds
+        
+        // Animation delays
+        loadDelay: 500
+    };
+
+    // ==================== STATE MANAGEMENT ====================
+    const State = {
+        widgetsLoaded: {
+            score: false,
+            vmatchlist: false,
+            matchlist: false
+        },
+        betSlip: {
+            items: [],
+            totalOdds: 0,
+            stake: 0
+        },
+        activeFilter: 'all',
+        isMobileMenuOpen: false,
+        isBetSlipOpen: false
+    };
+
+    // ==================== WIDGET LOADER ENGINE ====================
+    class WidgetLoader {
+        constructor() {
+            this.loadedScripts = new Set();
+            this.init();
+        }
+
+        init() {
+            console.log('%c🏏 UVIN777 Widget Engine Initializing...', 'color: #D4AF37; font-weight: bold;');
+            
+            // Load all widgets with staggered timing for better performance
+            setTimeout(() => this.loadWidget('score'), 0);
+            setTimeout(() => this.loadWidget('vmatchlist'), CONFIG.loadDelay);
+            setTimeout(() => this.loadWidget('matchlist'), CONFIG.loadDelay * 2);
+            
+            // Setup auto-refresh
+            this.setupAutoRefresh();
+        }
+
+        loadWidget(widgetName) {
+            const scriptUrl = CONFIG.widgets[widgetName];
+            const containerId = CONFIG.containers[widgetName];
+            const container = document.getElementById(containerId);
+
+            if (!container) {
+                console.error(`❌ Container #${containerId} not found for widget: ${widgetName}`);
+                return;
+            }
+
+            // Check if script already loaded
+            if (this.loadedScripts.has(widgetName)) {
+                console.log(`⏭️ Widget "${widgetName}" already loaded, refreshing...`);
+                this.refreshWidget(widgetName);
+                return;
+            }
+
+            console.log(`📥 Loading widget: ${widgetName} from ${scriptUrl}`);
+
+            // Create script element
+            const script = document.createElement('script');
+            script.src = scriptUrl;
+            script.async = true;
+            script.setAttribute('data-widget', widgetName);
+            script.setAttribute('data-container', containerId);
+
+            // Success handler
+            script.onload = () => {
+                console.log(`✅ Widget loaded successfully: ${widgetName}`);
+                this.loadedScripts.add(widgetName);
+                State.widgetsLoaded[widgetName] = true;
+                
+                // Hide loader
+                this.hideLoader(containerId);
+                
+                // Apply UVIN777 theme to widget content
+                setTimeout(() => this.applyThemeToWidget(containerId), 1000);
+                
+                // Dispatch custom event
+                window.dispatchEvent(new CustomEvent('uvin:widgetLoaded', { 
+                    detail: { widget: widgetName, container: containerId } 
+                }));
+            };
+
+            // Error handler
+            script.onerror = () => {
+                console.error(`❌ Failed to load widget: ${widgetName}`);
+                this.showError(containerId, `Failed to load ${widgetName}. Please try again.`);
+                
+                // Retry once after 5 seconds
+                setTimeout(() => {
+                    if (!State.widgetsLoaded[widgetName]) {
+                        console.log(`🔄 Retrying widget: ${widgetName}`);
+                        this.retryLoad(widgetName);
+                    }
+                }, 5000);
+            };
+
+            // Append to document
+            document.body.appendChild(script);
+        }
+
+        retryLoad(widgetName) {
+            const scriptUrl = CONFIG.widgets[widgetName];
+            const script = document.createElement('script');
+            script.src = `${scriptUrl}?retry=${Date.now()}`;
+            script.async = true;
+            script.onload = () => {
+                this.loadedScripts.add(widgetName);
+                State.widgetsLoaded[widgetName] = true;
+                this.hideLoader(CONFIG.containers[widgetName]);
+            };
+            document.body.appendChild(script);
+        }
+
+        refreshWidget(widgetName) {
+            const containerId = CONFIG.containers[widgetName];
+            const container = document.getElementById(containerId);
+            
+            if (!container) return;
+            
+            // Show mini refresh indicator
+            this.showRefreshIndicator(containerId);
+            
+            // Reload the specific widget
+            if (this.loadedScripts.has(widgetName)) {
+                this.loadedScripts.delete(widgetName);
+            }
+            
+            // Clear container
+            container.innerHTML = `
+                <div class="loading-spinner">
+                    <div class="spinner-gold"></div>
+                    <p>Refreshing data...</p>
+                </div>
+            `;
+            
+            // Reload
+            setTimeout(() => this.loadWidget(widgetName), 300);
+        }
+
+        setupAutoRefresh() {
+            setInterval(() => {
+                console.log('🔄 Auto-refreshing all widgets...');
+                Object.keys(CONFIG.widgets).forEach(widgetName => {
+                    if (this.loadedScripts.has(widgetName)) {
+                        this.refreshWidget(widgetName);
+                    }
+                });
+            }, CONFIG.refreshInterval);
+        }
+
+        hideLoader(containerId) {
+            const container = document.getElementById(containerId);
+            if (container) {
+                const loader = container.querySelector('.loading-spinner');
+                if (loader) {
+                    loader.style.opacity = '0';
+                    loader.style.transition = 'opacity 0.3s ease';
+                    setTimeout(() => loader.remove(), 300);
+                }
+            }
+        }
+
+        showRefreshIndicator(containerId) {
+            const container = document.getElementById(containerId);
+            if (container) {
+                const indicator = document.createElement('div');
+                indicator.className = 'refresh-indicator';
+                indicator.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i>';
+                indicator.style.cssText = `
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    color: #D4AF37;
+                    font-size: 0.8rem;
+                    z-index: 10;
+                    animation: spin 1s linear infinite;
+                `;
+                container.style.position = 'relative';
+                container.appendChild(indicator);
+                setTimeout(() => indicator.remove(), 2000);
+            }
+        }
+
+        showError(containerId, message) {
+            const container = document.getElementById(containerId);
+            if (container) {
+                container.innerHTML = `
+                    <div class="error-state" style="text-align:center; padding:2rem; color:#FF5252;">
+                        <i class="fas fa-exclamation-triangle" style="font-size:2rem; margin-bottom:0.5rem;"></i>
+                        <p>${message}</p>
+                        <button onclick="window.location.reload()" class="retry-btn" 
+                                style="background:var(--gold-primary); color:#000; padding:0.5rem 1.5rem; 
+                                       border:none; border-radius:8px; margin-top:1rem; cursor:pointer; font-weight:600;">
+                            <i class="fas fa-redo"></i> Retry
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        applyThemeToWidget(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            // Add UVIN777 class to all elements inside widget
+            const allElements = container.querySelectorAll('*');
+            allElements.forEach(el => {
+                el.classList.add('uvin-themed');
+            });
+
+            // Style tables
+            const tables = container.querySelectorAll('table');
+            tables.forEach(table => {
+                table.style.width = '100%';
+                table.style.borderCollapse = 'collapse';
+                table.style.color = '#FFFFFF';
+            });
+
+            // Style table headers
+            const headers = container.querySelectorAll('th');
+            headers.forEach(th => {
+                th.style.background = '#1A1A1A';
+                th.style.color = '#D4AF37';
+                th.style.padding = '12px';
+                th.style.borderBottom = '2px solid #D4AF37';
+                th.style.fontWeight = '700';
+                th.style.textTransform = 'uppercase';
+                th.style.fontSize = '0.8rem';
+                th.style.letterSpacing = '0.5px';
+            });
+
+            // Style table cells
+            const cells = container.querySelectorAll('td');
+            cells.forEach(td => {
+                td.style.padding = '10px';
+                td.style.borderBottom = '1px solid #2A2A2A';
+            });
+
+            // Style links
+            const links = container.querySelectorAll('a');
+            links.forEach(link => {
+                link.style.color = '#D4AF37';
+                link.style.textDecoration = 'none';
+                link.style.transition = 'color 0.2s ease';
+                link.addEventListener('mouseenter', () => link.style.color = '#F0D78C');
+                link.addEventListener('mouseleave', () => link.style.color = '#D4AF37');
+            });
+
+            // Add hover effect to rows
+            const rows = container.querySelectorAll('tr');
+            rows.forEach(row => {
+                row.addEventListener('mouseenter', () => row.style.background = 'rgba(212,175,55,0.05)');
+                row.addEventListener('mouseleave', () => row.style.background = 'transparent');
+            });
+
+            console.log(`🎨 UVIN777 theme applied to: ${containerId}`);
+        }
+    }
+
+    // ==================== UI INTERACTIONS ====================
+    class UIManager {
+        constructor() {
+            this.init();
+        }
+
+        init() {
+            this.setupNavigation();
+            this.setupFilterTabs();
+            this.setupHorizontalScroll();
+            this.setupBetSlip();
+            this.setupMobileMenu();
+            this.updateMatchCount();
+        }
+
+        setupNavigation() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                    
+                    const page = link.getAttribute('data-page');
+                    console.log(`📄 Navigated to: ${page}`);
+                    this.navigateTo(page);
+                });
+            });
+        }
+
+        navigateTo(page) {
+            // Smooth scroll to relevant section
+            const sections = {
+                'sportsbook': '.score-section',
+                'live': '.matchlist-section',
+                'results': '.horizontallist-section',
+                'casino': '.widget-section'
+            };
+            
+            const target = document.querySelector(sections[page] || '.score-section');
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        setupFilterTabs() {
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    filterTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    const filter = tab.getAttribute('data-filter');
+                    State.activeFilter = filter;
+                    this.filterMatches(filter);
+                });
+            });
+        }
+
+        filterMatches(filter) {
+            const container = document.getElementById('vmatchlist-widget');
+            if (!container) return;
+            
+            console.log(`🔍 Filtering matches: ${filter}`);
+            
+            // Add filter attribute to container for CSS targeting
+            container.setAttribute('data-filter', filter);
+            
+            // Dispatch event for widget internal handling
+            window.dispatchEvent(new CustomEvent('uvin:filterChange', { 
+                detail: { filter } 
+            }));
+        }
+
+        setupHorizontalScroll() {
+            const container = document.querySelector('.horizontal-scroll-container');
+            const scrollLeft = document.getElementById('scrollLeft');
+            const scrollRight = document.getElementById('scrollRight');
+
+            if (scrollLeft && container) {
+                scrollLeft.addEventListener('click', () => {
+                    container.scrollBy({ left: -300, behavior: 'smooth' });
+                });
+            }
+
+            if (scrollRight && container) {
+                scrollRight.addEventListener('click', () => {
+                    container.scrollBy({ left: 300, behavior: 'smooth' });
+                });
+            }
+        }
+
+        setupBetSlip() {
+            const betSlip = document.getElementById('betSlip');
+            const stakeInput = document.getElementById('stakeAmount');
+            
+            // Listen for odds clicks from widgets
+            document.addEventListener('click', (e) => {
+                const oddsElement = e.target.closest('[data-odds]');
+                if (oddsElement) {
+                    const odds = parseFloat(oddsElement.getAttribute('data-odds'));
+                    const team = oddsElement.getAttribute('data-team') || 'Selection';
+                    this.addToBetSlip(team, odds);
+                }
+            });
+
+            // Stake input change
+            if (stakeInput) {
+                stakeInput.addEventListener('input', () => {
+                    this.updatePotentialWin();
+                });
+            }
+
+            // Toggle bet slip on mobile
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 1200 && e.target.closest('.place-bet-btn') === null) {
+                    // Auto-close logic handled by CSS transform
+                }
+            });
+        }
+
+        addToBetSlip(team, odds) {
+            State.betSlip.items.push({ team, odds });
+            State.betSlip.totalOdds = State.betSlip.items.reduce((acc, item) => acc * item.odds, 1);
+            
+            this.renderBetSlip();
+            this.showBetSlipOnMobile();
+            
+            // Animate bet count
+            const betCount = document.getElementById('betCount');
+            if (betCount) {
+                betCount.textContent = State.betSlip.items.length;
+                betCount.style.transform = 'scale(1.3)';
+                setTimeout(() => betCount.style.transform = 'scale(1)', 200);
+            }
+        }
+
+        removeFromBetSlip(index) {
+            State.betSlip.items.splice(index, 1);
+            State.betSlip.totalOdds = State.betSlip.items.reduce((acc, item) => acc * item.odds, 1) || 0;
+            this.renderBetSlip();
+            this.updatePotentialWin();
+        }
+
+        renderBetSlip() {
+            const body = document.getElementById('betSlipBody');
+            const footer = document.getElementById('betSlipFooter');
+            const betCount = document.getElementById('betCount');
+
+            if (!body) return;
+
+            betCount.textContent = State.betSlip.items.length;
+
+            if (State.betSlip.items.length === 0) {
+                body.innerHTML = `
+                    <div class="empty-slip">
+                        <i class="fas fa-clipboard-list empty-icon"></i>
+                        <p>Click on odds to add selections</p>
+                    </div>
+                `;
+                footer.style.display = 'none';
+                return;
+            }
+
+            footer.style.display = 'block';
+            
+            body.innerHTML = State.betSlip.items.map((item, index) => `
+                <div class="bet-slip-item" style="display:flex; justify-content:space-between; align-items:center; 
+                     padding:0.8rem; background:#252525; border-radius:8px; margin-bottom:0.5rem;">
+                    <div>
+                        <p style="font-weight:600; font-size:0.85rem;">${item.team}</p>
+                        <p style="color:#D4AF37; font-size:0.75rem;">Odds: ${item.odds.toFixed(2)}</p>
+                    </div>
+                    <button onclick="window.UvinApp.removeFromBetSlip(${index})" 
+                            style="background:none; border:none; color:#FF5252; cursor:pointer; font-size:1rem;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        updatePotentialWin() {
+            const stakeInput = document.getElementById('stakeAmount');
+            const potentialWin = document.getElementById('potentialWin');
+            
+            if (stakeInput && potentialWin) {
+                const stake = parseFloat(stakeInput.value) || 0;
+                const win = stake * State.betSlip.totalOdds;
+                potentialWin.textContent = `₹${win.toFixed(2)}`;
+                State.betSlip.stake = stake;
+            }
+        }
+
+        showBetSlipOnMobile() {
+            const betSlip = document.getElementById('betSlip');
+            if (window.innerWidth <= 1200 && betSlip) {
+                betSlip.classList.add('open');
+            }
+        }
+
+        setupMobileMenu() {
+            const hamburger = document.getElementById('hamburgerBtn');
+            const navMenu = document.getElementById('navMenu');
+
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', () => {
+                    State.isMobileMenuOpen = !State.isMobileMenuOpen;
+                    navMenu.classList.toggle('open', State.isMobileMenuOpen);
+                });
+            }
+        }
+
+        updateMatchCount() {
+            // Update match count display (will be updated by widget data)
+            const countDisplay = document.getElementById('matchCount');
+            if (countDisplay) {
+                // This will be updated when widgets load
+                setInterval(() => {
+                    const widgetContent = document.getElementById('vmatchlist-widget');
+                    if (widgetContent) {
+                        const matchItems = widgetContent.querySelectorAll('.match-item, .match-card, tr');
+                        const liveCount = Array.from(matchItems).filter(item => 
+                            item.textContent.toLowerCase().includes('live')
+                        ).length;
+                        countDisplay.textContent = `${matchItems.length || 0} Matches`;
+                    }
+                }, CONFIG.refreshInterval);
+            }
+        }
+    }
+
+    // ==================== BET PLACEMENT ====================
+    window.placeBet = function() {
+        if (State.betSlip.items.length === 0) {
+            showToast('Please add selections to your bet slip', 'warning');
+            return;
+        }
+
+        if (State.betSlip.stake <= 0) {
+            showToast('Please enter a stake amount', 'warning');
+            return;
+        }
+
+        // Simulate bet placement (integrate with your backend API here)
+        console.log('🎲 Placing bet:', {
+            selections: State.betSlip.items,
+            stake: State.betSlip.stake,
+            totalOdds: State.betSlip.totalOdds,
+            potentialWin: State.betSlip.stake * State.betSlip.totalOdds
+        });
+
+        showToast('Bet placed successfully! 🎉', 'success');
+        
+        // Clear bet slip
+        State.betSlip.items = [];
+        State.betSlip.totalOdds = 0;
+        State.betSlip.stake = 0;
+        window.UvinApp.renderBetSlip();
+        document.getElementById('betSlipFooter').style.display = 'none';
+    };
+
+    // ==================== TOAST NOTIFICATION ====================
+    function showToast(message, type = 'info') {
+        const toast = document.createElement('div');
+        const colors = {
+            success: '#00E676',
+            warning: '#FFD740',
+            error: '#FF5252',
+            info: '#D4AF37'
+        };
+
+        toast.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #1A1A1A;
+            color: ${colors[type] || colors.info};
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            border: 1px solid ${colors[type] || colors.info};
+            font-weight: 600;
+            z-index: 10000;
+            animation: slideInRight 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        `;
+        
+        const icons = {
+            success: 'fa-check-circle',
+            warning: 'fa-exclamation-triangle',
+            error: 'fa-times-circle',
+            info: 'fa-info-circle'
+        };
+        
+        toast.innerHTML = `<i class="fas ${icons[type]}"></i> ${message}`;
+        document.body.appendChild(toast);
+        
+        setTimeout(() => toast.remove(), 3000);
+    }
+
+    // ==================== GLOBAL REFRESH FUNCTION ====================
+    window.refreshWidget = function(widgetName) {
+        if (widgetLoader && widgetLoader.loadedScripts.has(widgetName)) {
+            widgetLoader.refreshWidget(widgetName);
+        } else {
+            widgetLoader.loadWidget(widgetName);
+        }
+    };
+
+    // Add CSS for animations
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = `
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        .uvin-themed {
+            font-family: 'Montserrat', sans-serif !important;
+        }
+    `;
+    document.head.appendChild(styleSheet);
+
+    // ==================== INITIALIZE APPLICATION ====================
+    const widgetLoader = new WidgetLoader();
+    const uiManager = new UIManager();
+
+    // Expose to global scope
+    window.UvinApp = {
+        widgetLoader,
+        uiManager,
+        addToBetSlip: (team, odds) => uiManager.addToBetSlip(team, odds),
+        removeFromBetSlip: (index) => uiManager.removeFromBetSlip(index),
+        renderBetSlip: () => uiManager.renderBetSlip(),
+        placeBet: window.placeBet,
+        refreshWidget: window.refreshWidget
+    };
+
+    console.log('%c✅ UVIN777 Platform Ready %c| %c🏏 Sportsbook + Casino Live',
+        'color: #D4AF37; font-weight: bold; font-size: 1.2em;',
+        'color: #FFFFFF;',
+        'color: #00E676;');
+
+})();
